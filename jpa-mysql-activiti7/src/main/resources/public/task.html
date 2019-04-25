@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>领导审批页面</title>
+<script type="text/javascript" src="../miniui/boot.js"></script>
+<script type="text/javascript">
+
+// function getURLParameter(name) {
+//     var url = location.search;
+//     var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+//     var r = window.location.search.substr(1).match(reg);
+//     if (r != null) {
+//         return unescape(r[2]);
+//     }
+// }
+// if (getURLParameter("instanceId")) {
+//     var instanceId = getURLParameter("instanceId");
+// }
+// var data={
+//     "instanceId":instanceId,
+// }
+// init();
+// function init(){
+// 		$.ajax({
+// 			async : false,
+// 			cache : false,
+// 			type : 'POST',
+// 			url : "/demo/toShowTask",
+// 			data : data ,
+// 			error : function() {
+// 				alert('请求失败');
+// 			},
+// 			success : function(data) {
+// 				debugger
+// 				$("#result-div").html(data);
+// 			}
+// 		});
+// }
+ $(function(){
+	 mini.parse();
+	 grid = mini.get("datagrid1");
+	 grid.reload();
+	 
+ });
+function cloce(){
+	window.close();
+}
+</script>
+</head>
+<body>
+<div >
+    <div id="datagrid1" class="mini-datagrid" style="width:80%;height:500px;"  url="/demo/toShowTask"  idField="user_id" multiSelect="true">
+        <div property="columns">
+            <div type="indexcolumn" headerAlign="center" align="center">编号</div>
+           	<div name="name" field="name" width="200" headerAlign="center" align="center" allowSort="true">任务名称</div>
+	        <div field="assignee" width="100" headerAlign="center" align="center" allowSort="true">代理人</div>
+	        <div field="createTime" width="100" headerAlign="center" align="center" allowSort="true" dateFormat="yyyy-MM-dd">开始日期</div>
+	        <div field="instanceId" width="100" headerAlign="center" align="center" allowSort="true" >instanceId</div>
+	        <div field="executionId" width="100" headerAlign="center" align="center" allowSort="true" >executionId</div>
+		    <div field="definitionId" width="100" headerAlign="center" align="center" allowSort="true" >definitionId</div>
+        </div>
+    </div>
+</div>
+ 
+ 
+<div style="width: 100%">
+	<a class="mini-button" style="margin-left: 700px;margin-top: 100px" onclick="cloce()">关闭</a>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <script src="../miniui/boot.js" type="text/javascript"></script>
+</head>
+<body >
+ 
+<div id="addForm" style="padding:5px;">
+		<form id="newForm">
+        <table width="100%" border="0">
+            <tr>
+                <td width="150">任务ID:</td>
+                <td><input id="taskId" name="taskId" class="mini-textbox" width="100%" readonly/></td>
+            </tr>
+            <tr>
+                <td><span >*</span> 工号:</td>
+                <td><input id="jobNumber" name="jobNumber" class="mini-textbox" required="required"maxlength="25"/></td></td>
+            </tr>
+            <tr>
+                <td><span >*</span>请假天数:</td>
+                <td><input id="leaveDays" name="leaveDays" class="mini-textbox" required="required"maxlength="25"/></td></td>
+            </tr>
+               <tr>
+                <td>请假原因:</td>
+                <td><input class="mini-textarea" name="leaveReason" maxlength="500" id="remark" emptyText="请输入备注" style="width: 100%;height: 100px"/></td>
+            </tr>
+        </table>
+        </form>
+       
+        <div class="foot-btn_wrap">
+            <a  class="mini-button" style="margin-left: 700px;margin-top: 100px"  id="saveBtn" onclick="save()">保存</a>
+            <a class="mini-button" style="margin-top: 100px"onclick="CloseWindow('close')">关闭</a>
+        </div>
+</div>
+    <script type="text/javascript">
+        mini.parse();
+function getURLParameter(name) {
+     var url = location.search;
+     var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+     var r = window.location.search.substr(1).match(reg);
+     if (r != null) {
+         return unescape(r[2]);
+     }
+ }
+ if (getURLParameter("instanceId")) {
+     var instanceId = getURLParameter("instanceId");
+ }
+ 
+ mini.get("taskId").setValue(instanceId);
+        //保存
+        function save(){
+            var form = new mini.Form("#addForm");
+            form.validate();
+            if (form.isValid() == false) return;
+            var data = form.getData();
+            $.ajax({
+                type : "post",
+                url : "/demo/employeeApply",
+                data : data,
+                success : function(msg) {
+                	window.close();
+                }
+            });
+        }
+        
+    </script>
+</body>
+</html>

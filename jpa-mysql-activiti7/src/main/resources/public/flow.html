@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>首页</title>
+	<script type="text/javascript" src="/miniui/boot.js"></script>
+	<script type="text/javascript">
+ 
+		
+		function deploy(){
+			$.ajax({
+				url : "/demo/deploy",
+				type : 'POST',
+				error : function() {
+					alert('请求失败');
+				},
+				success : function(data) {
+					$(".result-div").html(data);
+				}
+			});
+		}
+		//填单
+        function openW() {
+			var instanceId = $("input[name='instanceId']").val();
+			window.open("employeeApply.html?instanceId="+instanceId);
+        }
+	</script>
+</head>
+<body>
+<div style="margin-top: 50px">
+
+	<span style="font-size: 20px;margin-top: 50px">
+		其实我们这里不需要流程部署,因为在我们启动项目的时候spring已经帮我部署所有流程了
+	以前的流程是需要自己单独部署的
+	</span>
+</div>
+	<!-- 菜单栏 -->
+	<div class="main-menu" style="margin-top: 50px">
+		<button class="show-instance" onClick='deploy()' >部署流程</button>
+	</div>
+	<br/>
+		流程实例ID:<input type="text" name="instanceId"/>
+	<br/>
+	<!-- 操作栏 -->
+	<div class="main-body">
+		
+	</div>	
+	<br/>
+	<!-- 结果栏 -->
+	<div class="result-div">
+	</div>
+</body>
+</html>

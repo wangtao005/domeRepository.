@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>流程定义列表</title>
+	<script type="text/javascript" src="/miniui/boot.js"></script>
+	<script type="text/javascript">
+ 
+		
+		function deploy(){
+			$.ajax({
+				url : "/demo/deploy",
+				type : 'POST',
+				error : function() {
+					alert('请求失败');
+				},
+				success : function(data) {
+					$(".result-div").html(data);
+				}
+			});
+		}
+		//填单
+        function openW() {
+			var instanceId = $("input[name='instanceId']").val();
+			window.open("employeeApply.html?instanceId="+instanceId);
+        }
+	</script>
+</head>
+<body>
+<div id="datagrid1" class="mini-datagrid" style="width:700px;height:250px;" 
+    url="/demo/fandProcessDefinition" 
+>
+    <div property="columns">
+        <div type="indexcolumn"></div>                
+        <div field="loginname" width="120" headerAlign="center" allowSort="true">员工帐号</div>    
+        <div field="name" width="120" headerAlign="center" allowSort="true">姓名</div>    
+        <div field="dept_name" width="120">所属部门</div>
+        <div field="position_name" width="100">职位</div>
+        <div field="salary" width="100" allowSort="true">薪资</div>
+    </div>
+</div>   
+   
+ 
+ 
+ 
+</body>
+</html>
