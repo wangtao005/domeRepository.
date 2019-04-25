@@ -1,0 +1,2 @@
+# domeRepository.
+事例
