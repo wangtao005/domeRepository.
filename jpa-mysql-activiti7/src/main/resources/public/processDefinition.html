@@ -1,45 +1,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>流程定义列表</title>
-	<script type="text/javascript" src="/miniui/boot.js"></script>
-	<script type="text/javascript">
- 
-		
-		function deploy(){
-			$.ajax({
-				url : "/demo/deploy",
-				type : 'POST',
-				error : function() {
-					alert('请求失败');
-				},
-				success : function(data) {
-					$(".result-div").html(data);
-				}
-			});
-		}
-		//填单
-        function openW() {
-			var instanceId = $("input[name='instanceId']").val();
-			window.open("employeeApply.html?instanceId="+instanceId);
-        }
-	</script>
+<title>流程定义列表</title>
+<script type="text/javascript" src="/miniui/boot.js"></script>
+<script type="text/javascript">
+
+
+	$(function() {
+		mini.parse();
+		init();
+	});
+
+	function init() {
+		var grid = mini.get("datagrid1");
+		grid.load();
+	}
+</script>
+
 </head>
 <body>
-<div id="datagrid1" class="mini-datagrid" style="width:700px;height:250px;" 
-    url="/demo/fandProcessDefinition" 
->
+<div id="datagrid1" class="mini-datagrid" width="100%" height="100%"     url="/demo/fandProcessDefinition" >
     <div property="columns">
-        <div type="indexcolumn"></div>                
-        <div field="loginname" width="120" headerAlign="center" allowSort="true">员工帐号</div>    
-        <div field="name" width="120" headerAlign="center" allowSort="true">姓名</div>    
-        <div field="dept_name" width="120">所属部门</div>
-        <div field="position_name" width="100">职位</div>
-        <div field="salary" width="100" allowSort="true">薪资</div>
+       <div type="indexcolumn" headerAlign="center" align="center">编号</div>
+	        <div field="id" width="100" headerAlign="center" align="center" allowSort="true">id</div>
+           	<div name="name" field="name" width="200" headerAlign="center" align="center" allowSort="true">name</div>
+		    <div field="key" width="100" headerAlign="center" align="center" allowSort="true" >key</div>
+	        <div field="category" width="100" headerAlign="center" align="center" allowSort="true">category</div>
+	        <div field="deploymentId" width="100" headerAlign="center" align="center" allowSort="true">deploymentId</div>
+	        <div field="description" width="100" headerAlign="center" align="center" allowSort="true">description</div>
+	        <div field="diagramResourceName" width="100" headerAlign="center" align="center" allowSort="true">diagramResourceName</div>
+	        <div field="engineVersion" width="100" headerAlign="center" align="center" allowSort="true">engineVersion</div>
+	        <div field="resourceName" width="100" headerAlign="center" align="center" allowSort="true" >resourceName</div>
+	        <div field="tenantId" width="100" headerAlign="center" align="center" allowSort="true" >tenantId</div>
+		    <div field="version" width="100" headerAlign="center" align="center" allowSort="true" >version</div>
     </div>
 </div>   
-   
- 
- 
- 
 </body>
 </html>

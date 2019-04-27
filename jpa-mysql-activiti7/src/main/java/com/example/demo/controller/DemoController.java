@@ -39,6 +39,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
+import com.example.demo.entity.Info;
 import com.example.demo.utils.ActivitiUtils;
 
 /**
@@ -517,23 +519,38 @@ private static final Logger logger = LoggerFactory.getLogger(DemoController.clas
 	@RequestMapping(value="/isFinished")
 	public boolean isFinished(String processInstanceId) {
         return historyService.createHistoricProcessInstanceQuery().finished().processInstanceId(processInstanceId).count() > 0;
-    }
+	}
+
 	/**
 	 * 查询流程定义信息列表
+	 * 
 	 * @return
 	 */
-	@RequestMapping(value="/fandProcessDefinition")
+	@RequestMapping(value = "/fandProcessDefinition")
 	@ResponseBody
-	public List<ProcessDefinition> fandProcessDefinition() {
-		
-		QueryProperty arg0;
-		List<ProcessDefinition> list = processEngine
-													.getRepositoryService()
-													.createProcessDefinitionQuery()
-													.orderByProcessDefinitionVersion()
-													.asc()
-													.list();
-		return list;
+	public List<Info> fandProcessDefinition() {
+
+		List<ProcessDefinition> list = processEngine.getRepositoryService().createProcessDefinitionQuery()
+				.orderByProcessDefinitionKey().asc().list();
+
+		List<Info> mylist = new ArrayList<Info>();
+
+		for (ProcessDefinition processDefinition : list) {
+			Info info = new Info();
+			info.setCategory(processDefinition.getCategory());
+			info.setDeploymentId(processDefinition.getDeploymentId());
+			info.setDescription(processDefinition.getDescription());
+			info.setDiagramResourceName(processDefinition.getDiagramResourceName());
+			info.setEngineVersion(processDefinition.getEngineVersion());
+			info.setId(processDefinition.getId());
+			info.setName(processDefinition.getName());
+			info.setResourceName(processDefinition.getResourceName());
+			info.setTenantId(processDefinition.getTenantId());
+			info.setVersion(processDefinition.getVersion());
+			info.setKey(processDefinition.getKey());
+			mylist.add(info);
+		}
+		return mylist;
 	}
 }
 
