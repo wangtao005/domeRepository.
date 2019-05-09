@@ -7,25 +7,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.example.base.entity.BaseEntity;
+
 @Entity
 @Table(name = "t_user")
-public class User {
+public class User extends BaseEntity{
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	private Long id;
+
 	
+	/**
+	 *序号
+	 * wt
+	 * 2019年5月9日
+	 */
+	private static final long serialVersionUID = -6916325931499732793L;
 	@Column(name = "name")
 	private String name;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
