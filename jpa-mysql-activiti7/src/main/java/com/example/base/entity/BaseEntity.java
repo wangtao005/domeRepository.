@@ -17,7 +17,6 @@ import org.springframework.data.annotation.CreatedDate;
 @MappedSuperclass
 public class BaseEntity  implements Serializable { 
 
-	
 	/**
 	 *序号
 	 * wt
