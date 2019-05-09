@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>首页</title>
+	<script type="text/javascript" src="/miniui/boot.js"></script>
+	<script type="text/javascript">
+ 
+		
+		function save(){
+			$.ajax({
+				url : "/user/save",
+				type : 'POST',
+				error : function() {
+					alert('请求失败');
+				},
+				success : function(data) {
+					 console.log(data);
+				}
+			});
+		}
+		//填单
+        
+	</script>
+</head>
+<body>
+ 
+	<!-- 菜单栏 -->
+	<div class="main-menu" style="margin-top: 50px">
+		<button class="show-instance" onClick='save()' >保存</button>
+	</div>
+ 
+ 
+</body>
+</html>
