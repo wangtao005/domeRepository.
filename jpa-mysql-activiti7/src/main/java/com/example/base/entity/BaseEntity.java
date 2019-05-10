@@ -30,14 +30,26 @@ public class BaseEntity  implements Serializable {
 	private Long id;
 	
 	@Temporal(TemporalType.DATE)
-	@CreatedDate
 	@Column(name="create_date")
 	private Date createDate;
 	
-	@CreatedBy
 	@Column(name="create_user_id")
 	private Long createUserId;
 
+	@Column(name="create_user_name")
+	private String createUserName;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="updata_date")
+	private Date updataDate;
+	
+	@Column(name="updata_user_id")
+	private Long updataUserId;
+	
+	@Column(name="updata_user_name")
+	private String updataUserName;
+	  
+	
 	public Long getId() {
 		return id;
 	}
@@ -61,4 +73,37 @@ public class BaseEntity  implements Serializable {
 	public void setCreateUserId(Long createUserId) {
 		this.createUserId = createUserId;
 	}
+
+	public String getCreateUserName() {
+		return createUserName;
+	}
+
+	public void setCreateUserName(String createUserName) {
+		this.createUserName = createUserName;
+	}
+
+	public Date getUpdataDate() {
+		return updataDate;
+	}
+
+	public void setUpdataDate(Date updataDate) {
+		this.updataDate = updataDate;
+	}
+
+	public Long getUpdataUserId() {
+		return updataUserId;
+	}
+
+	public void setUpdataUserId(Long updataUserId) {
+		this.updataUserId = updataUserId;
+	}
+
+	public String getUpdataUserName() {
+		return updataUserName;
+	}
+
+	public void setUpdataUserName(String updataUserName) {
+		this.updataUserName = updataUserName;
+	}
+	
 }

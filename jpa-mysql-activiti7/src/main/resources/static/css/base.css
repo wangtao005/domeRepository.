@@ -1,0 +1,55 @@
+.foot-btn_wrap{
+    text-align: center;
+    margin-top: 20px;
+}
+.foot-btn_wrap .mini-button{
+    min-width: 70px;
+    margin: 0 10px;
+}
+.inlineBlock{
+    display: inline-block;
+    vertical-align: middle;
+}
+.paddingBtm-td td{
+    padding-bottom: 8px;
+}
+.content-fixed-box{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 4px ;
+    margin: 0;
+}
+.job-list{
+    height: 45%;
+    width: 100%;
+    overflow-y: scroll;
+}
+.moveAndOut{
+    height: 10%;
+    width: 100%;
+    text-align: center;
+    padding-top: 13px;
+    box-sizing: border-box;
+}
+.moveAndOut .mini-button{
+    margin: 0 10%;
+}
+.permissionType{
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+.permissionType td{
+    border: 1px solid #aed0ea;
+    height: 30px;
+}
+.star{
+    color:red;
+    vertical-align: middle;
+    font-weight: bold;
+}
+.readonly_input span.mini-buttonedit-border,
+.readonly_input span.mini-textbox-border{
+    background: #e6e6e6;
+}

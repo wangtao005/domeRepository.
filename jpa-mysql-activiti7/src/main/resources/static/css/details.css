@@ -1,0 +1,617 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-size: 12px;
+    font-family: "微软雅黑";
+}
+
+ul, ol {
+    list-style: none;
+    margin-left: 0 !important;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+i, em {
+    font-style: normal;
+}
+
+b, strong {
+    font-weight: normal;
+}
+
+a img {
+    border: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+.clearfix:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+input, textarea {
+    outline: none;
+}
+
+textarea {
+    resize: none;
+}
+
+input {
+    border: none 0;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.detalBox {
+    width: 900px;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+.detalBox > h2 {
+    height: 10px;
+    text-align: center;
+    line-height: 97px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #3f4f5d;
+}
+
+.detaltop > ul {
+    float: left;
+}
+
+.detaltop .detalUl {
+    padding-left: 30px;
+    padding-right: 90px;
+}
+
+.detalUl > li {
+    height: 19px;
+}
+
+.detaltop > ul > li {
+    margin-bottom: 30px;
+}
+
+.detaltop .detalName {
+    float: left;
+    text-align: center;
+    width: 90px;
+    font-size: 14px;
+    color: #3f4f5d;
+}
+
+.detaltop .detalCom {
+    display: inline-block;
+    width: 260px;
+    height: 22px;
+    border-bottom: 1px solid #a7afb5;
+    font-size: 14px;
+    color: #333;
+    padding-bottom: 4px;
+}
+
+.detalIf {
+    border: 1px solid #3f4f5d;
+    padding: 0 30px 30px 30px;
+}
+
+.detalIf .detalDiv {
+    border-bottom: 1px solid #a7afb5;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.detalIf .detalDiv > span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #3f4f5d;
+    border-bottom: 2px solid #3f4f5d;
+    padding-bottom: 10px;
+}
+
+.detalIf_name {
+    margin-bottom: 30px;
+}
+
+.detalIf_name > li {
+    float: left;
+    height: 19px;
+    position: relative;
+}
+
+.detalIf_name > li > span {
+    float: left;
+}
+
+.work_APL {
+}
+
+.work_APL_com {
+    display: none;
+}
+
+.work_APL_header {
+}
+
+.work_APL_header > h2 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.work_APL_click {
+    position: relative;
+    top: -30px;
+    right: 0;
+    text-align: right;
+    cursor: pointer;
+    font-size: 16px;
+    color: #0088cc;
+    font-weight: 600;
+}
+
+.work_APL_click > i {
+    margin-left: 5px;
+}
+
+.grid_header {
+    height: 46px;
+}
+
+#btnPrint {
+    padding: 4px 10px;
+    background: #f3f3f3;
+    border: 1px solid #b3b3b3;
+    color: #333;
+    margin-top: 10px;
+}
+
+.grid_header_left {
+    float: left;
+    margin-top: 12px;
+}
+
+.grid_header_left > li {
+    float: left;
+    margin-right: 18px;
+    cursor: pointer;
+}
+
+.grid_header_right {
+    float: right;
+    width: 55px;
+    height: 26px;
+    margin-top: 22px;
+    border: 1px solid #b3b3b3;
+    border-radius: 5px;
+    background: #f3f3f3;
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.grid_header_right:focus {
+    outline: none;
+}
+
+
+.detalLi {
+    padding-right: 77px;
+}
+
+.detalLi .detalSpan {
+    display: inline-block;
+    width: 120px;
+    font-size: 14px;
+    color: #3f4f5d;
+}
+
+.detalLi .detalSpan2 {
+    display: inline-block;
+    width: 260px;
+    border-bottom: 1px solid #a7afb5;
+    font-size: 14px;
+    color: #828c96;
+    padding-bottom: 4px;
+}
+
+.detalLi .detalSpan3 {
+    border-bottom: none;
+}
+
+.detalLi2 .detalSpan {
+    display: inline-block;
+    width: 120px;
+    font-size: 14px;
+    color: #3f4f5d;
+}
+
+.detalLi2 .detalSpan2 {
+    display: inline-block;
+    width: 260px;
+    border-bottom: 1px solid #a7afb5;
+    font-size: 14px;
+    color: #828c96;
+    padding-bottom: 4px;
+}
+
+.detalLi2 .detalSpan3 {
+    width: 260px;
+}
+
+.detalCen {
+}
+
+.detalCent > ul > li {
+    float: left;
+}
+
+.detalCent > ul > li > div {
+    margin-bottom: 30px;
+    position: relative;
+    height: 19px;
+}
+
+.detalCent > ul > li > div > img {
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+.detalCent > ul > li > div > i {
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+.detalCent .detalCent_name {
+    float: left;
+    width: 90px;
+    font-size: 13px;
+    color: #3f4f5d;
+}
+
+.detalCent .detalCent_com {
+    float: left;
+    width: 175px;
+    height: 24px;
+    border-bottom: 1px solid #a7afb5;
+    font-size: 14px;
+    color: #828c96;
+    padding-bottom: 4px
+}
+
+.detalCent_li, .detalCent_li2 {
+    padding-right: 20px;
+}
+
+.detalTheme {
+    margin-bottom: 30px;
+}
+
+.detalThemeSpan {
+    float: left;
+    width: 90px;
+    font-size: 14px;
+    color: #3f4f5d;
+}
+
+.detalThemeSpan2 {
+    position: relative;
+    float: left;
+    width: 744px;
+    min-height: 78px;
+    border: 1px solid #a7afb5;
+    font-size: 14px;
+    color: #828c96;
+}
+
+.detalThemeSpan2 > textarea {
+    width: 740px;
+    height: 68px;
+    border: none;
+    padding: 5px;
+}
+
+.detalThemeSpan3 {
+    position: relative;
+    float: left;
+    font-size: 14px;
+    color: #828c96;
+}
+
+.detalCocle {
+    margin-bottom: 30px;
+}
+
+.detalCocle > ul > li {
+    float: left;
+}
+
+.detalCocle_li {
+    padding-right: 54px;
+}
+
+.detalCocleSpan {
+    float: left;
+    width: 90px;
+    font-size: 14px;
+    color: #3f4f5d;
+}
+
+.detalCocleSpan2 {
+    float: left;
+    width: 200px;
+    font-size: 14px;
+    color: #828c96;
+    margin-top: -10px;
+}
+
+.detalCocleSpan3 {
+    float: left;
+    width: 400px;
+    border-bottom: 1px solid #a7afb5;
+    font-size: 14px;
+    color: #828c96;
+    padding-bottom: 4px;
+}
+
+.detalCocleSpan3 > p > img {
+    margin-left: 20px;
+}
+
+.detalColeP {
+    float: left;
+}
+
+.detalColeP2 {
+    float: right;
+    margin-right: 10px;
+}
+
+.detalBox .detalSelect {
+    padding-bottom: 10px;
+    border-bottom: none;
+    margin-top: -10px;
+}
+
+.enclosure {
+    border: none;
+}
+
+.enclo > ul {
+    margin-bottom: 20px;
+}
+
+.enclo > ul > li {
+    float: left;
+    font-size: 12px;
+}
+
+.enclo > ul > li > div {
+    width: 104px !important;
+    height: 25px !important;
+    border: 1px solid #0088cc;
+    color: #0088cc;
+    text-align: center;
+    line-height: 25px;
+    position: relative !important;
+    overflow: hidden;
+}
+
+.enclo > ul .enclo_li > div > input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 100px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.enclo_li {
+    margin-right: 10px;
+    width: 104px;
+    height: 25px;
+    position: relative;
+}
+
+.enclo > ul .enclo_li > span {
+    position: absolute;
+    top: 4px;
+    left: 40px;
+    color: #0088cc;
+}
+
+.enclo_li2 {
+    width: 104px;
+    height: 25px;
+    border: 1px solid #0088cc;
+    cursor: pointer;
+    background: #fff;
+    margin-right: 10px;
+}
+
+.enclo_li2 > input {
+    width: 100%;
+    height: 100%;
+    color: #0088cc;
+    cursor: pointer;
+    background: #fff;
+    font-size: 12px;
+}
+
+.enclo_li3 {
+    font-size: 12px;
+    line-height: 25px;
+    color: #cc0000;
+    margin-left: 10px;
+}
+
+.encloCom > ol {
+    padding-left: 20px;
+    background: #f5f5f5;
+}
+
+.encloCom > ol > li {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #2f4050;
+}
+
+.cncloComLi {
+    width: 320px;
+}
+
+.cncloComLi2 {
+    width: 110px;
+}
+
+.cncloComLi3 {
+    width: 110px;
+}
+
+.cncloComLi4 {
+    color: #1ab394 !important;
+    cursor: pointer;
+}
+
+.encloCom > ul {
+    padding-left: 20px;
+}
+
+.encloCom > ul > li {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #2f4050;
+}
+
+.enclo > ul .enclo_li > div > button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 100px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.prom {
+    font-size: 12px;
+    color: #cc0000;
+    position: absolute;
+    top: 25px;
+    left: 125px;
+}
+
+.detalThemeSpan2 .prom {
+    top: 84px;
+    left: 5px;
+}
+
+.detalCocleSpan3 .prom {
+    left: 5px;
+}
+
+.detalSpan2 .prom {
+    top: 25px;
+}
+
+.detalSpan2 .prom1 {
+    top: 32px;
+}
+
+.enclo_dr .prom {
+    top: 4px;
+    left: 5px;
+}
+
+.encloCom_width {
+    width: 838px !important;
+}
+
+.selectric .label {
+    background-color: #fff;
+    padding: 0;
+    font-weight: 400;
+    text-align: left;
+}
+
+#btnPrintAttachment {
+    padding: 4px 10px;
+    background: #f3f3f3;
+    border: 1px solid #b3b3b3;
+    color: #333;
+    margin-top: 10px;
+}
+
+#btnPrint {
+    padding: 4px 10px;
+    background: #f3f3f3;
+    border: 1px solid #b3b3b3;
+    color: #333;
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

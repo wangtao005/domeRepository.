@@ -1,0 +1,159 @@
+html, body{
+    margin:0;padding:0;border:0;width:100%;height:100%;overflow:hidden;
+}
+.title{
+    padding: 15px 15px 5px;
+    margin: 0;
+    border-bottom: 2px solid #ff9966;
+    font-size: 20px;
+}
+.setting-list{
+    padding: 50px;
+    overflow: hidden;
+    border-bottom: 1px dashed #ff9966;
+}
+.setting-item{
+    width: 50%;
+    float: left;
+    padding-left:25px;
+    box-sizing: border-box;
+}
+.setting-item2{
+    width: 50%;
+    float: left;
+}
+.item-title{
+    font-size: 18px;
+    margin-bottom: 20px;
+    padding-left: 30px;
+    color: #000;
+    position: relative;
+}
+.item-title:before{
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 50%;
+    background: #66ccff;
+}
+.contentBox{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 5px ;
+    margin: 0;
+}
+.fileUp{
+    position: relative;
+    overflow: hidden;
+}
+.file-input{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 9;
+    opacity: 0;
+    height: 100%;
+}
+.inlineBlock{
+    display: inline-block;
+    vertical-align: middle;
+}
+.list-wrap{
+    height: 50%;
+    width: 100%;
+    overflow: hidden;
+}
+.foot-btn_wrap{
+    text-align: center;
+    margin-top: 20px;
+}
+.foot-btn_wrap .mini-button{
+    min-width: 70px;
+    margin: 0 10px;
+}
+.paddingBtm-td td{
+    padding-bottom: 8px;
+}
+.content-fixed-box{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 4px ;
+    margin: 0;
+}
+.job-list{
+    height: 45%;
+    width: 100%;
+    overflow-y: scroll;
+}
+.moveAndOut{
+    height: 10%;
+    width: 100%;
+    text-align: center;
+    padding-top: 13px;
+    box-sizing: border-box;
+}
+.moveAndOut .mini-button{
+    margin: 0 10%;
+}
+.permissionType{
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+.permissionType td{
+    border: 1px solid #aed0ea;
+    height: 30px;
+}
+.star{
+    color:red;
+    vertical-align: middle;
+    font-weight: bold;
+}
+.readonly_input span.mini-buttonedit-border,
+.readonly_input span.mini-textbox-border{
+    background: #e6e6e6;
+}
+.center-btn-wrap,.rt-table{
+    float: left;
+    height: 100%;
+    box-sizing: border-box;
+}
+.center-btn-wrap{
+    width: 20%;
+    display: table;
+}
+.rt-table{
+    width: 80%;
+}
+.center-btn-wrap .btn-box{
+    display: table-cell;
+    vertical-align: middle;
+}
+.center-btn-wrap .btn-box .mini-button{
+    display: block;
+    max-width: 75px;
+    margin: 20px auto;
+}
+.summary-wrap td{
+    width: 25%;
+    text-align: right;
+    font-size: 16px;
+    line-height: 30px;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+.summary-wrap td:nth-of-type(2n){
+    text-align: left;
+    color:red;
+}
+.fl-item{
+    float: left;
+    height: 100%;
+}

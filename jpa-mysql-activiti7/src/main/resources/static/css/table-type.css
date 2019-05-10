@@ -1,0 +1,41 @@
+.table-bg{}
+.table-bg tbody{
+    border: 1px solid #afacac;
+}
+.table-bg tr{
+    border-top: 1px solid #afacac!important;
+    border-bottom: 1px solid #afacac!important;
+}
+.table-bg td{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    vertical-align: middle;
+}
+.text-titlebg{
+    background: #f1f1f1;
+    border: 1px solid #afacac;
+}
+.input-div{
+    white-space: pre-line;
+    line-height: 1.2;
+    text-align: justify;
+    /*padding-right: 10px;*/
+    padding: 4px 10px;
+}
+.rangeHidden{
+    display: none;
+}
+.center-txt{
+
+}
+.center-txt .mini-buttonedit-input{
+    text-align: center;
+}
+.wx1000Xg{
+    width: 88.4%!important;
+}
+.errorText{
+    margin-left: 0;
+    padding-left: 4px;
+}
