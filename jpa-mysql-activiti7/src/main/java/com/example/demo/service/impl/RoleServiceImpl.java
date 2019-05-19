@@ -18,29 +18,29 @@ import org.springframework.stereotype.Service;
 
 import com.example.base.service.impl.BaseServiceImpl;
 import com.example.common.Pagination;
-import com.example.demo.dao.UserDao;
-import com.example.demo.entity.User;
-import com.example.demo.service.UserService;
+import com.example.demo.dao.RoleDao;
+import com.example.demo.entity.Role;
+import com.example.demo.service.RoleService;
 
 
 @Service
-public class UserServiceImpl extends BaseServiceImpl<User, Serializable> implements UserService{
+public class RoleServiceImpl extends BaseServiceImpl<Role, Serializable> implements RoleService{
 
 	@Autowired
-	private UserDao userDao;
+	private RoleDao roleDao;
 	@Override
-	public Pagination<User> listByPage(User user, Integer pageSize, Integer pageIndex) {
-		Specification<User> spec = new Specification<User>() {
+	public Pagination<Role> listByPage(Role role, Integer pageSize, Integer pageIndex) {
+		Specification<Role> spec = new Specification<Role>() {
 			/*** 序号 */
 			private static final long serialVersionUID = 1L;
 			@Override
-			public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query,
+			public Predicate toPredicate(Root<Role> root, CriteriaQuery<?> query,
 					CriteriaBuilder criteriaBuilder) {
 				List<Predicate> lstPredicates = new ArrayList<Predicate>();
 				Predicate[] arrayPredicates = new Predicate[lstPredicates.size()];
 				
-				if (!StringUtils.isBlank(user.getName())) {
-					lstPredicates.add(criteriaBuilder.like(root.get("name").as(String.class),"%"+user.getName()+"%"));
+				if (!StringUtils.isBlank(role.getName())) {
+					lstPredicates.add(criteriaBuilder.like(root.get("name").as(String.class),"%"+role.getName()+"%"));
 				}
 				
 				return criteriaBuilder.and(lstPredicates.toArray(arrayPredicates));
@@ -50,8 +50,8 @@ public class UserServiceImpl extends BaseServiceImpl<User, Serializable> impleme
   
 		
 	 	@SuppressWarnings("deprecation")
-		Page<User> findAll = userDao.findAll(spec, new PageRequest(pageIndex, pageSize, Sort.Direction.ASC, "id"));
-	 	Pagination<User> pagination = new Pagination<User>();
+		Page<Role> findAll = roleDao.findAll(spec, new PageRequest(pageIndex, pageSize, Sort.Direction.ASC, "id"));
+	 	Pagination<Role> pagination = new Pagination<Role>();
 	 	pagination.setData(findAll.getContent());
 	 	pagination.setTotal(findAll.getTotalElements());
 		return pagination;

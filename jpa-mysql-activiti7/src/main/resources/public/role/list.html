@@ -16,7 +16,7 @@
 	        <td align="left">
 	         <span>用户名称名称:</span>   <input  id="name" name="name"  class="mini-textbox" style="width: 200px" /> 
 <!-- 	         <span style="margin-left: 10px">供应商所在地:</span>  <input  id="provinceName" name="provinceName"  class="mini-textbox" style="width: 200px" />  -->
-<!-- 	         <span style="margin-left: 10px">供应商类别:</span>    <input  id="supplierTypeId" name ="supplierTypeId" style="width: 200px" class="mini-treeselect" ajaxType="post"  url="/supplier/type/list"  textField="name" valueField="id" errorMode="none"  /> -->
+<!-- 	         <span style="margin-left: 10px">供应商类别:</span>    <input  id="roleTypeId" name ="roleTypeId" style="width: 200px" class="mini-treeselect" ajaxType="post"  url="/role/type/list"  textField="name" valueField="id" errorMode="none"  /> -->
                <a style="margin-left: 10px" class="mini-button" onclick="query()">查找</a> 
                 <a class="mini-button" onclick="reset()">重置</a> 
 	        </td>
@@ -29,16 +29,14 @@
     </table>
 </div>
 		<div class="mini-fit ">
-		   	<div id="datagrid1" class="mini-datagrid" style="width:100%;height:100%;"  url="/user/listByPage" sizeList="[5,10,20,50]" pageSize="20" allowResize="true" idField="id" multiSelect="true" showEmptyText="true" emptyText="暂无数据" alwaysShowEmptyText="true">
+		   	<div id="datagrid1" class="mini-datagrid" style="width:100%;height:100%;"  url="/role/listByPage" sizeList="[5,10,20,50]" pageSize="20" allowResize="true" idField="id" multiSelect="true" showEmptyText="true" emptyText="暂无数据" alwaysShowEmptyText="true">
 		        <div property="columns">
 		        	<div type="checkcolumn" headerAlign="center" align="center"></div>
 		            <div type="indexcolumn" headerAlign="center" align="center" allowSort="false">序号</div>
-		            <div field="name" width="120" headerAlign="center" align="center"  allowSort="false" >姓名</div>
-		            <div field="age" width="50" headerAlign="center" align="center" allowSort="false">年龄</div>
-		            <div field="sex" width="50" headerAlign="center" align="center" allowSort="false">性别</div>
-		            <div field="address" width="120" headerAlign="center" align="center" allowSort="false">地址</div>
+		            <div field="name" width="120" headerAlign="center" align="center"  allowSort="false" >角色名称</div>
+		            <div field="rank" width="50" headerAlign="center" align="center" allowSort="false">角色级别</div>
+		            <div field="remark" width="50" headerAlign="center" align="center" allowSort="false">备注</div>
 		            <div field="createDate" width="120" headerAlign="center" align="center" allowSort="false">创建时间</div>
-		            <div field="phone" width="120" headerAlign="center" align="center" allowSort="false">联系电话</div>
 		            <div name="action" width="200" headerAlign="center" align="center">操作</div>
 		        </div>
 		    </div>
@@ -78,18 +76,18 @@
  function query(){
     var name =	mini.get("name").getValue();
 //     var provinceName = 	mini.get("provinceName").getValue();
-//     var supplierTypeId = mini.get("supplierTypeId").getValue();
+//     var roleTypeId = mini.get("roleTypeId").getValue();
     	data={
     			"name":name	
 //     			"provinceName":provinceName,	
-//     			"supplierTypeId":supplierTypeId	
+//     			"roleTypeId":roleTypeId	
     	}
 	    	grid.load(data);
     }
  function reset(){
     	mini.get("name").setValue("");
 //     	mini.get("provinceName").setValue("");
-//     	mini.get("supplierTypeId").setValue("");
+//     	mini.get("roleTypeId").setValue("");
     	data={}
 	    	grid.load(data);
     }
@@ -101,7 +99,7 @@
             mini.confirm("确定删除选中记录？", "确定", function(action) {
                 if (action == "ok") {
                     $.ajax({
-                        url : "/supplier/del",
+                        url : "/role/del",
                         type : "post",
                         data : {"id" : row.id},
                         success : function(text) {
@@ -130,7 +128,7 @@
             mini.confirm("确定删除选中记录？","确定",function (action) {
                 if(action=="ok"){
                     $.ajax({
-                        url: "/supplier/delAll",
+                        url: "/role/delAll",
                         type : "post",
                         data:{"ids":val},
                         success: function (text) {
@@ -153,7 +151,7 @@
 	function add(){
 		mini.open({
 	        title: "新增",
-            url: "/user/add.html",
+            url: "/role/add.html",
             width: 800,
             height: 600,
             allowResize: false,
@@ -169,7 +167,7 @@
 	function view(id){
 		mini.open({
 	        title: "查看",
-            url: "/user/view.html",
+            url: "/role/view.html",
             width: 800,
             height: 600,
             allowResize: false,
@@ -189,7 +187,7 @@
     function edit(id){
 		mini.open({
 	        title: "编辑",
-            url: "/user/edit.html",
+            url: "/role/edit.html",
             width: 800,
             height: 600,
             allowResize: false,

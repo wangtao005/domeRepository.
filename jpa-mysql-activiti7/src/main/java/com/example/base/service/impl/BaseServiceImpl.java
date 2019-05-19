@@ -10,12 +10,13 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.stereotype.Service;
 
 import com.example.base.dao.BaseRepository;
 import com.example.base.entity.BaseEntity;
 import com.example.base.service.BaseService;
-@Service
+@NoRepositoryBean
 public class BaseServiceImpl<T extends BaseEntity,ID extends Serializable> implements BaseService<T , Serializable>  {
 
 	@Autowired

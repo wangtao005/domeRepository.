@@ -16,14 +16,14 @@
 	        <td align="left">
 	         <span>用户名称名称:</span>   <input  id="name" name="name"  class="mini-textbox" style="width: 200px" /> 
 <!-- 	         <span style="margin-left: 10px">供应商所在地:</span>  <input  id="provinceName" name="provinceName"  class="mini-textbox" style="width: 200px" />  -->
-<!-- 	         <span style="margin-left: 10px">供应商类别:</span>    <input  id="supplierTypeId" name ="supplierTypeId" style="width: 200px" class="mini-treeselect" ajaxType="post"  url="/supplier/type/list"  textField="name" valueField="id" errorMode="none"  /> -->
+<!-- 	         <span style="margin-left: 10px">供应商类别:</span>    <input  id="userTypeId" name ="userTypeId" style="width: 200px" class="mini-treeselect" ajaxType="post"  url="/user/type/list"  textField="name" valueField="id" errorMode="none"  /> -->
                <a style="margin-left: 10px" class="mini-button" onclick="query()">查找</a> 
                 <a class="mini-button" onclick="reset()">重置</a> 
 	        </td>
         
              <td  colspan="10" align="right"> 
-                 <a class="mini-button noneButton" iconCls="icon-add"      onclick = "add()">新增</a>
-                 <a class="mini-button noneButton" iconCls="icon-remove"    onclick="delAll()" id="approval">批量删除</a>
+<!-- <!--                  <a class="mini-button noneButton" iconCls="icon-add"      onclick = "add()">新增</a> --> 
+<!--                  <a class="mini-button noneButton" iconCls="icon-remove"    onclick="delAll()" id="approval">批量删除</a> -->
             </td> 
         </tr>
     </table>
@@ -55,20 +55,9 @@
                 e.cellHtml = 
                 	'<a class="check-botton"  onclick="view('+e.row.id+')">查看</a><span class="separator"></span>'+
                     '<a class="add-botton" onclick="edit('+e.row.id+')">编辑</a><span class="separator"></span>' +
-                    '<a class="del-botton" onclick="remove()">删除</a><span class="separator"></span>'
-                    +'<a class="check-botton" onclick="defriend()">拉黑</a>'
+                    '<a class="del-botton" onclick="remove()">清除</a><span class="separator"></span>'
         }
-        //状态改变
-        if (column.field == "sex") {
-            var a = e.value;
-            if (a == 0) {
-                e.cellHtml = '<span>男</span>';
-            } else if (a == 1) {
-                e.cellHtml = '<span>女</span>';
-            } else  {
-            	 e.cellHtml = '<span>-</span>';
-            }
-        }
+    
         
     })
   
@@ -77,19 +66,13 @@
     
  function query(){
     var name =	mini.get("name").getValue();
-//     var provinceName = 	mini.get("provinceName").getValue();
-//     var supplierTypeId = mini.get("supplierTypeId").getValue();
     	data={
     			"name":name	
-//     			"provinceName":provinceName,	
-//     			"supplierTypeId":supplierTypeId	
     	}
 	    	grid.load(data);
     }
  function reset(){
     	mini.get("name").setValue("");
-//     	mini.get("provinceName").setValue("");
-//     	mini.get("supplierTypeId").setValue("");
     	data={}
 	    	grid.load(data);
     }
@@ -98,10 +81,10 @@
     function remove() {
         var row = mini.get("datagrid1").getSelected();
         if (row) {
-            mini.confirm("确定删除选中记录？", "确定", function(action) {
+            mini.confirm("确定清除选中记录的角色？", "确定", function(action) {
                 if (action == "ok") {
                     $.ajax({
-                        url : "/supplier/del",
+                        url : "/user/del",
                         type : "post",
                         data : {"id" : row.id},
                         success : function(text) {
@@ -130,7 +113,7 @@
             mini.confirm("确定删除选中记录？","确定",function (action) {
                 if(action=="ok"){
                     $.ajax({
-                        url: "/supplier/delAll",
+                        url: "/user/edit",
                         type : "post",
                         data:{"ids":val},
                         success: function (text) {
@@ -152,8 +135,8 @@
 
 	function add(){
 		mini.open({
-	        title: "新增",
-            url: "/user/add.html",
+	        title: "分配",
+            url: "/roleAssignment/edit.html",
             width: 800,
             height: 600,
             allowResize: false,
@@ -188,8 +171,8 @@
 
     function edit(id){
 		mini.open({
-	        title: "编辑",
-            url: "/user/edit.html",
+	        title: "编辑角色",
+            url: "/roleAssignment/edit.html",
             width: 800,
             height: 600,
             allowResize: false,
