@@ -22,11 +22,13 @@ import org.activiti.engine.TaskService;
 import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.history.HistoricActivityInstanceQuery;
 import org.activiti.engine.history.HistoricProcessInstance;
+import org.activiti.engine.impl.Page;
 import org.activiti.engine.impl.RepositoryServiceImpl;
 import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
 import org.activiti.engine.query.QueryProperty;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
+import org.activiti.engine.runtime.Execution;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.runtime.ProcessInstanceQuery;
 import org.activiti.engine.task.Task;
@@ -40,7 +42,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.example.demo.entity.Info;
+import com.example.common.Pagination;
+import com.example.demo.entity.DeploymentVo;
+import com.example.demo.entity.ExecutionVo;
+import com.example.demo.entity.ProcessDefinitionVo;
+import com.example.demo.entity.TaskVo;
 import com.example.demo.utils.ActivitiUtils;
 
 /**
@@ -528,29 +534,147 @@ private static final Logger logger = LoggerFactory.getLogger(DemoController.clas
 	 */
 	@RequestMapping(value = "/fandProcessDefinition")
 	@ResponseBody
-	public List<Info> fandProcessDefinition() {
+	public Pagination<ProcessDefinitionVo> fandProcessDefinition(Integer pageSize,Integer pageIndex) {
 
 		List<ProcessDefinition> list = processEngine.getRepositoryService().createProcessDefinitionQuery()
-				.orderByProcessDefinitionKey().asc().list();
+				.orderByProcessDefinitionKey().asc().listPage(pageIndex, pageSize);
+		long count = processEngine.getRepositoryService().createProcessDefinitionQuery().count();
 
-		List<Info> mylist = new ArrayList<Info>();
+		List<ProcessDefinitionVo> mylist = new ArrayList<ProcessDefinitionVo>();
 
 		for (ProcessDefinition processDefinition : list) {
-			Info info = new Info();
-			info.setCategory(processDefinition.getCategory());
-			info.setDeploymentId(processDefinition.getDeploymentId());
-			info.setDescription(processDefinition.getDescription());
-			info.setDiagramResourceName(processDefinition.getDiagramResourceName());
-			info.setEngineVersion(processDefinition.getEngineVersion());
-			info.setId(processDefinition.getId());
-			info.setName(processDefinition.getName());
-			info.setResourceName(processDefinition.getResourceName());
-			info.setTenantId(processDefinition.getTenantId());
-			info.setVersion(processDefinition.getVersion());
-			info.setKey(processDefinition.getKey());
-			mylist.add(info);
+			ProcessDefinitionVo processDefinitionVo = new ProcessDefinitionVo();
+			processDefinitionVo.setCategory(processDefinition.getCategory());
+			processDefinitionVo.setDeploymentId(processDefinition.getDeploymentId());
+			processDefinitionVo.setDescription(processDefinition.getDescription());
+			processDefinitionVo.setDiagramResourceName(processDefinition.getDiagramResourceName());
+			processDefinitionVo.setEngineVersion(processDefinition.getEngineVersion());
+			processDefinitionVo.setId(processDefinition.getId());
+			processDefinitionVo.setName(processDefinition.getName());
+			processDefinitionVo.setResourceName(processDefinition.getResourceName());
+			processDefinitionVo.setTenantId(processDefinition.getTenantId());
+			processDefinitionVo.setVersion(processDefinition.getVersion());
+			processDefinitionVo.setKey(processDefinition.getKey());
+			mylist.add(processDefinitionVo);
 		}
-		return mylist;
+		Pagination<ProcessDefinitionVo> pagination = new Pagination<ProcessDefinitionVo>();
+		pagination.setTotal(count);
+		pagination.setData(mylist);
+		return pagination;
 	}
+	/**
+	 * 查询流程部署信息列表
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/fandProcessDeployment")
+	@ResponseBody
+	public Pagination<DeploymentVo> fandProcessDeployment(Integer pageSize,Integer pageIndex) {
+		
+		List<Deployment> list = processEngine.getRepositoryService().createDeploymentQuery().orderByDeploymentName().asc().listPage(pageIndex, pageSize);
+		long count = processEngine.getRepositoryService().createDeploymentQuery().count();
+		
+		List<DeploymentVo> mylist = new ArrayList<DeploymentVo>();
+		
+		for (Deployment deployment : list) {
+			DeploymentVo deploymentVo = new DeploymentVo();
+			deploymentVo.setCategory(deployment.getCategory());
+			deploymentVo.setId(deployment.getId());
+			deploymentVo.setName(deployment.getName());
+			deploymentVo.setTenantId(deployment.getTenantId());
+			deploymentVo.setKey(deployment.getKey());
+			deploymentVo.setDeploymentTime(deployment.getDeploymentTime());
+			mylist.add(deploymentVo);
+		}
+		Pagination<DeploymentVo> pagination = new Pagination<DeploymentVo>();
+		pagination.setTotal(count);
+		pagination.setData(mylist);
+		return pagination;
+	}
+	
+	
+	/**
+	 * 查询在活动的流程任务表信息列表
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/fandLiveTask")
+	@ResponseBody
+	public Pagination<TaskVo> fandLiveTask(Integer pageSize,Integer pageIndex) {
+		
+		List<Task> list = processEngine.getTaskService().createTaskQuery().orderByProcessDefinitionId().asc().listPage(pageIndex, pageSize);
+		long count = processEngine.getTaskService().createTaskQuery().count();
+		
+		List<TaskVo> mylist = new ArrayList<TaskVo>();
+		
+		for (Task task : list) {
+			TaskVo taskVo = new TaskVo();
+			taskVo.setId(task.getId());
+			taskVo.setName(task.getName());
+			taskVo.setAssignee(task.getAssignee());
+			taskVo.setCategory(task.getCategory());
+			taskVo.setClaimTime(task.getClaimTime());
+			taskVo.setCreateTime(task.getCreateTime());
+			taskVo.setDescription(task.getDescription());
+			taskVo.setDueDate(task.getDueDate());
+			taskVo.setExecutionId(task.getExecutionId());
+			taskVo.setFormKey(task.getFormKey());
+			taskVo.setOwner(task.getOwner());
+			taskVo.setParentTaskId(task.getParentTaskId());
+			taskVo.setPriority(task.getPriority());
+			taskVo.setProcessDefinitionId(task.getProcessDefinitionId());
+			taskVo.setProcessInstanceId(task.getProcessInstanceId());
+			taskVo.setProcessVariables(task.getProcessVariables());
+			taskVo.setTaskDefinitionKey(task.getTaskDefinitionKey());
+			taskVo.setTenantId(task.getTenantId());
+			taskVo.setSuspended(task.isSuspended());
+			mylist.add(taskVo);
+		}
+		Pagination<TaskVo> pagination = new Pagination<TaskVo>();
+		pagination.setTotal(count);
+		pagination.setData(mylist);
+		return pagination;
+	}
+	
+	
+	/**
+	 * 查询流程执行任务表信息列表
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/fandExecutionTask")
+	@ResponseBody
+	public Pagination<ExecutionVo> fandExecutionTask(Integer pageSize,Integer pageIndex) {
+		
+		 List<Execution> list = processEngine.getRuntimeService().createExecutionQuery().orderByProcessDefinitionId().asc().listPage(pageIndex, pageSize);
+		long count =   processEngine.getRuntimeService().createExecutionQuery().count();
+		List<ExecutionVo> mylist = new ArrayList<ExecutionVo>();
+		
+		for (Execution execution : list) {
+			ExecutionVo executionVo = new ExecutionVo();
+			executionVo.setId(execution.getId());
+			executionVo.setName(execution.getName());
+			executionVo.setTenantId(execution.getTenantId());
+			executionVo.setActivityId(execution.getActivityId());
+			executionVo.setDescription(execution.getDescription());
+			executionVo.setParentId(execution.getParentId());
+			executionVo.setRootProcessInstanceId(execution.getRootProcessInstanceId());
+			executionVo.setSuperExecutionId(execution.getSuperExecutionId());
+			executionVo.setTenantId(execution.getTenantId());
+			executionVo.setProcessInstanceId(execution.getProcessInstanceId());
+			executionVo.setEnded(execution.isEnded());
+			mylist.add(executionVo);
+		}
+		Pagination<ExecutionVo> pagination = new Pagination<ExecutionVo>();
+		pagination.setTotal(count);
+		pagination.setData(mylist);
+		return pagination;
+	}
+	
+	
+	
+	
+	
+	
 }
 

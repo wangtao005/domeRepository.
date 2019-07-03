@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>流程部署列表</title>
+<script type="text/javascript" src="/miniui/boot.js"></script>
+<script type="text/javascript">
+
+
+	$(function() {
+		mini.parse();
+		init();
+	});
+
+	function init() {
+		var grid = mini.get("datagrid1");
+		grid.load();
+	}
+	
+	//格式化日期
+	function ondayRenderer(e) {
+	    var value = new Date(e.value);
+	 if (value) return mini.formatDate(value, 'yyyy-MM-dd')
+	}
+	 
+</script>
+
+</head>
+<body>
+<div id="datagrid1" class="mini-datagrid" width="100%" height="100%"     url="/demo/fandProcessDeployment" >
+    <div property="columns">
+       <div type="indexcolumn" headerAlign="center" align="center">编号</div>
+	       <div field="id" width="100" headerAlign="center" align="center" allowSort="true">id</div>
+           	<div name="name" field="name" width="200" headerAlign="center" align="center" allowSort="true">部署名称</div>
+		    <div field="key" width="100" headerAlign="center" align="center" allowSort="true" >key</div>
+	        <div field="category" width="100" headerAlign="center" align="center" allowSort="true">category</div>
+	        <div field="tenantId" width="100" headerAlign="center" align="center" allowSort="true" >tenantId</div>
+	        <div field="deploymentTime" width="100" headerAlign="center" align="center" allowSort="true" renderer="ondayRenderer">部署时间</div>
+    </div>
+</div>   
+</body>
+</html>

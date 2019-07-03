@@ -1,6 +1,9 @@
 package com.example.demo.entity;
-
-public class Info {
+/**
+ * 流程定义
+ * @author wt
+ */
+public class ProcessDefinitionVo {
 	private String category;
 	private String deploymentId ;
 	private String description;

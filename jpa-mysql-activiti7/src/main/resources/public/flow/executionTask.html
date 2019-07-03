@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>流程部署列表</title>
+<script type="text/javascript" src="/miniui/boot.js"></script>
+<script type="text/javascript">
+
+
+	$(function() {
+		mini.parse();
+		init();
+	});
+
+	function init() {
+		var grid = mini.get("datagrid1");
+		grid.load();
+	}
+	
+	//格式化日期
+	function ondayRenderer(e) {
+	    var value = new Date(e.value);
+	 if (value) return mini.formatDate(value, 'yyyy-MM-dd')
+	}
+	 
+</script>
+
+</head>
+<body>
+<div id="datagrid1" class="mini-datagrid" width="100%" height="100%"     url="/demo/fandExecutionTask" >
+    <div property="columns">
+       <div type="indexcolumn" headerAlign="center" align="center">编号</div>
+	       <div field="id" width="100" headerAlign="center" align="center" allowSort="true">id</div>
+           	<div name="name" field="name" width="200" headerAlign="center" align="center" allowSort="true">名称</div>
+		    <div field="description" width="100" headerAlign="center" align="center" allowSort="true" >描述</div>
+		    <div field="rootProcessInstanceId" width="100" headerAlign="center" align="center" allowSort="true" >根的ID</div>
+		    <div field="superExecutionId" width="100" headerAlign="center" align="center" allowSort="true" >执行的id</div>
+		    <div field="parentId" width="100" headerAlign="center" align="center" allowSort="true" >父级的id</div>
+		    <div field="processInstanceId" width="100" headerAlign="center" align="center" allowSort="true" >流程实例的执行树根的ID</div>
+		    <div field="activityId" width="100" headerAlign="center" align="center" allowSort="true" >活动的id</div>
+		    <div field="isSuspended" width="100" headerAlign="center" align="center" allowSort="true" >是否暂缓</div>
+		    <div field="isEnded" width="100" headerAlign="center" align="center" allowSort="true" >是否已结束执行</div>
+    </div>
+</div>   
+</body>
+</html>
