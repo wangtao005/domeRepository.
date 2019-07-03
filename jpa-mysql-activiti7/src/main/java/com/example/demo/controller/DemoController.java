@@ -105,8 +105,6 @@ private static final Logger logger = LoggerFactory.getLogger(DemoController.clas
 	/**
 	 * <p>跳转到上级审核页面</p>
 	 * @return String 上级审核页面
-	 * @author FRH
-	 * @time 2018年12月5日下午2:31:42
 	 * @version 1.0
 	 */
 	@RequestMapping(value="/toLeave")
@@ -119,9 +117,6 @@ private static final Logger logger = LoggerFactory.getLogger(DemoController.clas
 	/**
 	 * <p>启动请假流程（流程key即xml中定义的ID为leaveProcess）</p>
 	 * @return String 启动的流程ID
-	 * @author FRH
-	 * @time 2018年12月10日上午11:12:50
-	 * @version 1.0
 	 */
 	@RequestMapping(value="/start")
 	@ResponseBody
@@ -129,7 +124,7 @@ private static final Logger logger = LoggerFactory.getLogger(DemoController.clas
 		/*
 		 *  xml中定义的ID
 		 */
-		String instanceKey = "myProcess";
+		String instanceKey = "leave";
 		logger.info("开启请假流程...");
 		
 		
