@@ -141,6 +141,10 @@
             height: 600,
             allowResize: false,
             onload: function () {
+            	var row = grid.getSelected();
+                var data = {"id": row.id};
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.setData(data);
             },
             ondestroy: function (action) {
             	mini.get("datagrid1").reload();
@@ -178,7 +182,7 @@
             allowResize: false,
             onload: function () {
             	var row = grid.getSelected();
-                var data = {"id": row.id};
+                var data =  row;
                 var iframe = this.getIFrameEl();
                 iframe.contentWindow.setData(data);
             },

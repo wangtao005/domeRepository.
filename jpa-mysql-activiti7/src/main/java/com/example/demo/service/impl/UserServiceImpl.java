@@ -19,7 +19,9 @@ import org.springframework.stereotype.Service;
 import com.example.base.service.impl.BaseServiceImpl;
 import com.example.common.Pagination;
 import com.example.demo.dao.UserDao;
+import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
+import com.example.demo.service.RoleService;
 import com.example.demo.service.UserService;
 
 
@@ -28,6 +30,8 @@ public class UserServiceImpl extends BaseServiceImpl<User, Serializable> impleme
 
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private RoleService roleService;
 	@Override
 	public Pagination<User> listByPage(User user, Integer pageSize, Integer pageIndex) {
 		Specification<User> spec = new Specification<User>() {
@@ -55,6 +59,20 @@ public class UserServiceImpl extends BaseServiceImpl<User, Serializable> impleme
 	 	pagination.setData(findAll.getContent());
 	 	pagination.setTotal(findAll.getTotalElements());
 		return pagination;
+	}
+	@Override
+	public User info(Long id) {
+			User findById = super.findById(id);
+			List<Role> roles = new ArrayList<Role>();
+			findById.setRoles(roles);
+			String roleIds = findById.getRoleIds();
+			String[] split = roleIds.split(",");
+			for (String roleId : split) {
+				Role findById2 = roleService.findById(roleId);
+				roles.add(findById2);
+			}
+			
+		return findById;
 	}
  
 }

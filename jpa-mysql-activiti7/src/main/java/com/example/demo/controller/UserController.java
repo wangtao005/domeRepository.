@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,14 @@ private static final Logger logger = LoggerFactory.getLogger(UserController.clas
 	private User save(User user) {
 		User save = userService.save(user);
 		return save;
+	}
+	@RequestMapping(value="/roleAssignment")
+	@ResponseBody
+	private User roleAssignment(User user) {
+		User save = userService.findById(user.getId());
+		save.setRoleIds(user.getRoleIds());
+		User save2 = userService.save(save);
+		return save2;
 	}
 
 	@RequestMapping(value="/info")

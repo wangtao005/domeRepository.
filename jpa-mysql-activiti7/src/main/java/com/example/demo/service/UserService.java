@@ -10,6 +10,6 @@ public interface UserService extends BaseService<User,Serializable>  {
 
 	Pagination<User> listByPage(User user, Integer pageSize, Integer pageIndex);
 
-	// User findById(Long id);
+	 User info(Long id);
 	 
 }

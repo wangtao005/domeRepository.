@@ -1,8 +1,11 @@
 package com.example.demo.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.example.base.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -34,9 +37,29 @@ public class User extends BaseEntity{
 	@Column(name = "phone",length=50)
 	private String phone;
 	
+	@Column(name = "rolesIds")
+	private String roleIds;
+	
+	@Transient
+	private List<Role> roles;
 	
 	
-	
+	public String getRoleIds() {
+		return roleIds;
+	}
+
+	public void setRoleIds(String roleIds) {
+		this.roleIds = roleIds;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
 	public String getName() {
 		return name;
 	}

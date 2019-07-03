@@ -51,16 +51,47 @@
     var data={}
     var grid = mini.get("datagrid1");
     grid.load(data);
-    grid.on("drawcell",function(e) {
-        var column = e.column;
-        var record = e.record;
-        if (column.name == "action") {
-                e.cellHtml = '';
-        }
-    })
-  
+   var id;  
+ function setData(data){
+	 var row = data;
+	  id=data.id;
+	  var roleIds = row.roleIds;
+	   var arr = roleIds.split(",");
+	   for(var i=0;arr[i];i++){
+		   grid.findRow(function(row){
+			    if(row.id == arr[i]) {
+			    	 grid.setSelected (row);
+			    	}
+			    });
+			}
+	   }
  
-    
+ function save(){
+	 
+	 var rows = grid.getSelecteds();
+	 var roleIds="";
+	 for(var i=0;rows[i];i++){
+		 if(roleIds){
+			 roleIds = roleIds+","+rows[i].id;
+		 }else{
+			 roleIds=rows[i].id;
+		 }
+	 }
+		var data={};
+		data["id"]=id;
+		 data["roleIds"]=roleIds;
+		
+        $.ajax({
+            url : "/user/roleAssignment",
+            type: 'POST',
+            data :data,
+            success:function (res) {
+                    mini.alert("添加成功");
+                    CloseWindow("cancel");
+            }
+        })
+    	
+    }
     
  function query(){
     var name =	mini.get("name").getValue();
