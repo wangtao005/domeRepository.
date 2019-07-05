@@ -51,7 +51,23 @@ function getURLParameter(name) {
      var instanceId = getURLParameter("instanceId");
  }
  
- mini.get("taskId").setValue(instanceId);
+	// 点击我要请假，开启流程
+	$(function(){
+		$.ajax({
+			url : "/demo/start",
+			type : 'POST',
+			error : function() {
+				alert('请求失败');
+			},
+			success : function(data) {
+				 mini.get("taskId").setValue(data);
+			}
+		});
+	});
+	
+ 
+ 
+ 
         //保存
         function save(){
             var form = new mini.Form("#addForm");

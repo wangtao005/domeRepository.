@@ -132,8 +132,9 @@ private static final Logger logger = LoggerFactory.getLogger(DemoController.clas
 		 *  设置流程参数，开启流程
 		 */
 		Map<String,Object> map = new HashMap<String,Object>();
-        map.put("jobNumber","A1001");
-        map.put("busData","bus data");
+        map.put("userId","1");
+        map.put("userName","大王");
+        map.put("dayNum","大王");
 		ProcessInstance instance = runtimeService.startProcessInstanceByKey(instanceKey, map);//使用流程定义的key启动流程实例，key对应helloworld.bpmn文件中id的属性值，使用key值启动，默认是按照最新版本的流程定义启动
 		
 		logger.info("启动流程实例成功:{}", instance);
@@ -240,11 +241,11 @@ private static final Logger logger = LoggerFactory.getLogger(DemoController.clas
 		"leaveDays": // 请假天数
 		"leaveReason": // 请假原因
 		*/
-		
+		Task task = taskService.createTaskQuery().processInstanceId(taskId).singleResult();
 		/*
 		 *  查询任务
 		 */
-		Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
+//		Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
 		if(task == null) {
 			logger.info("任务ID:{}查询到任务为空！", taskId);
 			return "fail";
